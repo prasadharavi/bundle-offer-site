@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bundle and Save</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff3f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #e91e63;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
+    }
+
+    .bundle-option {
+      border: 2px solid #ddd;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .bundle-option.selected {
+      border-color: #f48fb1;
+      background-color: #fff0f5;
+    }
+
+    .bundle-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .bundle-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bundle-label input {
+      transform: scale(1.2);
+    }
+
+    .bundle-discount {
+      font-size: 13px;
+      color: #777;
+    }
+
+    .price {
+      text-align: right;
+    }
+
+    .price p {
+      margin: 0;
+    }
+
+    .price .current {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .price .old {
+      text-decoration: line-through;
+      color: gray;
+      font-size: 14px;
+    }
+
+    .most-popular {
+      color: #e91e63;
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    select {
+      width: 100%;
+      padding: 6px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .summary {
+      text-align: center;
+      margin-top: 10px;
+      color: #e91e63;
+      font-weight: 600;
+    }
+
+    .total {
+      text-align: right;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    .add-btn {
+      background: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.2s;
+    }
+
+    .add-btn:hover {
+      background: #d81b60;
+    }
+
+    .cart {
+      margin-top: 20px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 15px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #eee;
+      padding: 5px 0;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>YAY! It's BOGO</h1>
+
+  <div class="card">
+    <!-- Option 1 -->
+    <div class="bundle-option" data-id="1" data-price="10">
+      <div class="bundle-header">
+        <div class="bundle-label">
+          <input type="radio" name="bundle" value="1">
+          <div>
+            <p><strong>1 Unit</strong></p>
+            <p class="bundle-discount">10% Off • Standard Price</p>
+          </div>
+        </div>
+        <div class="price">
+          <p class="current">$10.00 USD</p>
+          <p class="old">$24.00 USD</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option 2 -->
+    <div class="bundle-option selected" data-id="2" data-price="18">
+      <div class="bundle-header">
+        <div class="bundle-label">
+          <input type="radio" name="bundle" value="2" checked>
+          <div>
+            <p><strong>2 Unit</strong></p>
+            <p class="bundle-discount">20% Off</p>
+          </div>
+        </div>
+        <div class="price">
+          <p class="current">$18.00 USD</p>
+          <p class="old">$24.00 USD</p>
+        </div>
+      </div>
+      <p class="most-popular">MOST POPULAR</p>
+
+      <div class="grid">
+        <div>
+          <label>Size</label>
+          <select>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+          </select>
+        </div>
+        <div>
+          <label>Colour</label>
+          <select>
+            <option>Black</option>
+            <option>White</option>
+            <option>Blue</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option 3 -->
+    <div class="bundle-option" data-id="3" data-price="24">
+      <div class="bundle-header">
+        <div class="bundle-label">
+          <input type="radio" name="bundle" value="3">
+          <div>
+            <p><strong>3 Unit</strong></p>
+            <p class="bundle-discount">30% Off</p>
+          </div>
+        </div>
+        <div class="price">
+          <p class="current">$24.00 USD</p>
+          <p class="old">$24.00 USD</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="summary">Free Delivery</p>
+    <p class="total">Total: $18.00 USD</p>
+    <button class="add-btn">+ Add to Cart</button>
+  </div>
+
+  <div class="cart" id="cart" style="display:none;">
+    <h3>Cart Summary</h3>
+    <div id="cart-items"></div>
+    <p class="total" id="cart-total"></p>
+  </div>
+
+  <script>
+    const bundleOptions = document.querySelectorAll('.bundle-option');
+    const totalDisplay = document.querySelector('.total');
+    const addBtn = document.querySelector('.add-btn');
+    const cart = document.getElementById('cart');
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    let selectedPrice = 18; // Default selected 2 Unit
+    let selectedLabel = '2 Unit';
+    let cartData = [];
+
+    bundleOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        bundleOptions.forEach(o => o.classList.remove('selected'));
+        option.classList.add('selected');
+        option.querySelector('input').checked = true;
+
+        selectedPrice = parseFloat(option.dataset.price);
+        selectedLabel = option.querySelector('strong').innerText;
+        totalDisplay.textContent = `Total: $${selectedPrice}.00 USD`;
+      });
+    });
+
+    addBtn.addEventListener('click', () => {
+      cartData.push({ label: selectedLabel, price: selectedPrice });
+      renderCart();
+      alert(`${selectedLabel} added to cart for $${selectedPrice}.00`);
+    });
+
+    function renderCart() {
+      cart.style.display = 'block';
+      cartItems.innerHTML = '';
+      let total = 0;
+      cartData.forEach(item => {
+        total += item.price;
+        const div = document.createElement('div');
+        div.classList.add('cart-item');
+        div.innerHTML = `<span>${item.label}</span><span>$${item.price}</span>`;
+        cartItems.appendChild(div);
+      });
+      cartTotal.textContent = `Total: $${total} USD`;
+    }
+  </script>
+</body>
+</html>
